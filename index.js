@@ -8,7 +8,7 @@ const http = require('http')
 app.use(express.json())
 app.use(loggerMiddleware)
 
-app.get('/rota-secreta', authMiddleware, (req, res) => {
+app.get('/rota-secreta', authMiddleware, (req, res) => { // entender melhor / entender melhor tambem o pq isso eh um callback
     res.status(200).json({ mensagem: "Acesso liberado! A senha esta correta."})
 })
 
@@ -27,9 +27,19 @@ const authMiddleware = (req, res, next) => {
     }
 }
 
+const errorHandler = (err, req, res, next) => {
+    console.error("OPS! Um erro aconteceu: ", err.stack) // .stack eh usado para ver onde o erro ocorreu
+    res.status(500).json({ erro: 'Erro interno do servidor. Tente novamente mais tarde.' })
+}
+
+app.use(errorHandler) //1 - Pro errorHandler? visto que, ele eh a ultima funcao a ser ativada nos loops de middleware, e ao ser ativada, ja recebe o error como parametro, printa o console.error com .stack para debugging preciso do local do erro e devolve um error? e, portanto, nesse caso, ele seria ativado tambem caso rolasse algum outro erro, correto? mas como nao ha tratagem de dados no codigo, seu local mais plausivel eh o .get pq forca um erro.
+
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`)
 })
  //lembrete, revisar tudo isso amanha! ha pontas soltas ainda
+
+
