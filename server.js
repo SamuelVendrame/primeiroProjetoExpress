@@ -4,8 +4,12 @@ const bodyParser = require('body-parser') // entender melhor o que faz
 const app = express()
 const http = require('http')
 
+const userRoutes = require('./routes/userRoutes')
 
-app.use(express.json())
+app.use('/usuarios', router)
+
+
+app.use(express.json()) // Cria a propriedade body no req, sendo portanto um middleware, porque trata a requisicao (transforma-a em json)
 app.use(loggerMiddleware)
 
 app.get('/rota-secreta', authMiddleware, (req, res) => { // entender melhor / entender melhor tambem o pq isso eh um callback
@@ -19,7 +23,7 @@ const loggerMiddleware = (req, res, next) => {
 };
 
 const authMiddleware = (req, res, next) => {
-    if(req.body.chave === 'ACESSO-123'){
+    if(req.body.chave === 'ACESSO-123'){ // req.body ?
         next();
     }
     else{
@@ -32,7 +36,9 @@ const errorHandler = (err, req, res, next) => {
     res.status(500).json({ erro: 'Erro interno do servidor. Tente novamente mais tarde.' })
 }
 
-app.use(errorHandler) //1 - Pro errorHandler? visto que, ele eh a ultima funcao a ser ativada nos loops de middleware, e ao ser ativada, ja recebe o error como parametro, printa o console.error com .stack para debugging preciso do local do erro e devolve um error? e, portanto, nesse caso, ele seria ativado tambem caso rolasse algum outro erro, correto? mas como nao ha tratagem de dados no codigo, seu local mais plausivel eh o .get pq forca um erro.
+app.use(errorHandler) 
+
+
 
 
 const PORT = 3000;
