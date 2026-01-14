@@ -6,7 +6,7 @@ const http = require('http')
 
 const userRoutes = require('./routes/userRoutes')
 
-app.use('/usuarios', router)
+app.use('/usuarios', userRoutes)
 
 
 app.use(express.json()) // Cria a propriedade body no req, sendo portanto um middleware, porque trata a requisicao (transforma-a em json)
@@ -23,7 +23,7 @@ const loggerMiddleware = (req, res, next) => {
 };
 
 const authMiddleware = (req, res, next) => {
-    if(req.body.chave === 'ACESSO-123'){ // req.body ?
+    if(req.body.chave === 'ACESSO-123'){ // req.body ????
         next();
     }
     else{
