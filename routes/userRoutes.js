@@ -17,7 +17,5 @@ router.get('/', (req, res) => {
     })
 })
 
-console.log("Apaga isso quando ler")
-console.log("Apaga isso quando ler")
 module.exports = router // exportando o roteador para ele poder ser usado
-// IMPORTANTE ----- REVER TUDO ISSO, conceito ainda esta meio perdido. Peca para o gemini explicar para que isso serve exatamente, e se eh essencial na construcao do meu projeto E como a construcao dele seria. !aaaaaaaaaaa
+// IMPORTANTE ----- REVER TUDO ISSO, conceito ainda esta meio perdido. Peca para o gemini explicar para que isso serve exatamente, e se eh essencial na construcao do meu projeto E como a construcao dele seria. !aaaaaaaaaaaaaaa

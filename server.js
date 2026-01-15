@@ -39,8 +39,6 @@ const errorHandler = (err, req, res, next) => {
 app.use(errorHandler) 
 
 
-
-
 const PORT = 3000;
 
 app.listen(PORT, () => {
@@ -49,3 +47,6 @@ app.listen(PORT, () => {
  //lembrete, revisar tudo isso amanha! ha pontas soltas ainda
 
 
+function fazendoFuncaoPraCommitar() {
+    console.log("Commitando quadrado verde")
+}
