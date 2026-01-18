@@ -41,7 +41,7 @@ const errorHandler = (err, req, res, next) => {
 
 app.use(errorHandler) 
 
-// TESTE, APAGAR DEPOIS, MAS FUNCIONAL!
+// TESTE, APAGAR DEPOIS, MAS FUNCIONAL!!!!!!!!
 app.get("/users", (req, res) => {
     res.send("Pedrinho, id 1");
 })
